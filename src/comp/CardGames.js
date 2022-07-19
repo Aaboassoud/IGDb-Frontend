@@ -30,7 +30,7 @@ export default function CardGames() {
                                 <ListGroup.Item className='bg-dark text-info'>{`Rating: ${e.rating}`}</ListGroup.Item>
                             </ListGroup>
                             <Card.Body>
-                                <Link to={`RateGame/$`} className='m-2'><Card.Link className='btn btn-warning' href="#">Rate it</Card.Link></Link>
+                                <Link to={`RateGame/${e.id}`} className='m-2'><Card.Link className='btn btn-warning' href="#">Rate it</Card.Link></Link>
                                 <Link to="Details" className='m-2'><Card.Link className='btn btn-outline-info'>Details</Card.Link></Link>
                             </Card.Body>
                         </Card>

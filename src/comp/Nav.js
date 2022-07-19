@@ -15,7 +15,10 @@ export default function Nav1() {
       </Nav.Item>      
       <Nav.Item>
         
-        <Nav.Link eventKey="Login" href='/Login' className='text-warning'>Login</Nav.Link>
+        { localStorage.getItem('token')!=null?<Nav.Link eventKey="Logout" onClick={()=>{
+          return (localStorage.clear(),window.location.reload()
+          )}} 
+          className='text-warning'>Logout</Nav.Link> : <Nav.Link eventKey="Login" href='/Login' className='text-warning'>Login</Nav.Link>}
       </Nav.Item>
     </Nav>
   )

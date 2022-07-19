@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/Login' element={<Login/>} />
-          <Route path='/RateGame' element={<RateGame/>} />
+          <Route path='/RateGame/:id' element={<RateGame props/>} />
         </Routes>
         <Footer/>
       </Router>
