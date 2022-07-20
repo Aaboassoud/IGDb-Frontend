@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -15,9 +15,10 @@ export default function Login() {
         password,
       })
       .then((res) => {
-        if(res.status == 200){
-            localStorage.setItem("token" , res.data.token)
-            navigate("/")
+        if (res.status == 200) {
+          localStorage.setItem("token", res.data.token);
+          navigate("/");
+          window.location.reload()
         }
       })
       .catch((err) => {
@@ -64,13 +65,14 @@ export default function Login() {
           </div>
         </div>
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary" onClick={postData}>Login</button>
+          <button type="submit" className="btn btn-primary" onClick={postData}>
+            Login
+          </button>
         </div>
         <p className="forgot-password text-right">
           Forgot <a href="#">password?</a>
         </p>
       </Container>
     </div>
-    
   );
 }

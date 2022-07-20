@@ -1,29 +1,61 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function RateGame(props) {
+export default function RateGame() {
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [rating , setRating] = useState(null)
     const params = useParams()
     const [data, setData] = useState([])
+    const [data2, setData2] = useState([])
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/review/ratings/${params.id}`)
             .then(res => {
                 console.log(res.data['Ratings Comments']);
                 setData(res.data['Ratings Comments'])
             })
-            .catch(err => { console.log(err) })
-    }, [params.id])
+            .catch(res => { console.log(res.data) })
+        axios.get(`http://127.0.0.1:8000/games/all?game=${params.id}`)
+            .then(res => {
+                console.log(res.data.games);
+                setData2(res.data.games)
+            })
+            .catch(res => { console.log(res.data) })
+    }, [params.id,rating])
+    function parseJwt(token) {
+        if (!token) { return; }
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+    }
+    const addRating = () => {
+        axios.post(`http://127.0.0.1:8000/review/add/rating/${params.id}`,{
+            rating},{
+            headers: { 'Authorization': `Bearer ${token}`}
+        }).then(res => {
+            console.log(res)
+            alert(res.data.msg)
+            handleClose()
+            setRating(null)
+        }).catch(err => {
+            console.log(err)
+            console.log(err.data);})
+    }
+    function handleClick() {
+        navigate("/Login");
+      }
     return (
         <div className='container text-center'>
             <Row className='mt-5'>
                 <Col>
                     <>
                         <Card className='text-white bg-dark'>
-                            <Card.Img variant="top" src={Array.from(new Set(data.map(item => item.game.image)))} />
+                            <Card.Img variant="top" src={Array.from(new Set(data2.map(item => item.image)))} />
                         </Card>
                     </>
                 </Col>
@@ -47,17 +79,17 @@ export default function RateGame(props) {
                         <Card.Body>
                             <Card.Title className='text-danger'>Average rating:</Card.Title>
                             <Card.Title className='text-warning'>{Array.from(new Set(data.map(item => item.game.rating)))}</Card.Title>
-                            <Button variant="info" onClick={handleShow}>Add Rating</Button>
+                            <Button variant="info" onClick={token!=null?handleShow:handleClick}>Add Rating</Button>
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>Modal heading</Modal.Title>
                                 </Modal.Header>
-                                <h5>Add rating: </h5><input type='text' />
+                                <h5>Add rating: </h5><input type='text' maxLength={'3'} onChange={(e) => {setRating(parseFloat(e.target.value))}}/>
                                 <Modal.Footer>
                                     <Button variant="secondary" onClick={handleClose}>
                                         Close
                                     </Button>
-                                    <Button variant="primary" onClick={handleClose}>
+                                    <Button variant="primary" onClick={addRating}>
                                         Save Changes
                                     </Button>
                                 </Modal.Footer>
