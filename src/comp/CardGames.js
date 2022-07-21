@@ -9,7 +9,7 @@ export default function CardGames() {
   const isLoggedIn = localStorage.getItem('token')
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/games/all")
+      .get("https://igdb-adnan.herokuapp.com/games/all")
       .then((res) => {
         console.log(res.data.games);
         setData(res.data.games);
