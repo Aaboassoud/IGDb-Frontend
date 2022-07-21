@@ -1,3 +1,7 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
 body {
   background-image: url('https://resi.ze-robot.com/dl/4k/4k-dci-abstract-gaming-wallpaper-3840%C3%972160.jpg');
   /* Full height */
@@ -5,7 +9,7 @@ body {
 
   /* Center and scale the image nicely */
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat:repeat-y ;
   background-size: cover;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -17,4 +21,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.h-1001 {
+  height: 1000px;
 }

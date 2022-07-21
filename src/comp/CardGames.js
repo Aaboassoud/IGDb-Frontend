@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, Col, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import  { AiFillHeart } from 'react-icons/ai'
+import { AiFillHeart } from 'react-icons/ai'
 
 export default function CardGames() {
   const [data, setData] = useState([]);
+  const isLoggedIn = localStorage.getItem('token')
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/games/all")
@@ -18,8 +19,7 @@ export default function CardGames() {
       });
   }, []);
   return (
-    <div class="">
-      <div class="">
+    <div>
         <Row sm={1} md={3} className="g-4">
           {data.map((e) => (
             <>
@@ -39,17 +39,17 @@ export default function CardGames() {
                     <ListGroup.Item className="bg-dark text-info">{`Rating: ${e.rating}`}</ListGroup.Item>
                   </ListGroup>
                   <Card.Body>
-                    <Link to={`RateGame/${e.id}`} className="m-2">
+                    <Link to={`RateGame/${e.id}`} className="m-1">
                       <Card.Link className="btn btn-warning" href="#">
                         Ratings
                       </Card.Link>
                     </Link>
-                    <AiFillHeart />
-                    {/* <Link to="Details" className="m-2">
+                    <Link to={`Details/${e.id}`} className="m-2">
                       <Card.Link className="btn btn-outline-info">
                         Details
                       </Card.Link>
-                    </Link> */}
+                    </Link>
+                    {isLoggedIn?<Link to={`addWishList/${e.id}`} className="btn btn-danger"><AiFillHeart /></Link>:null}
                   </Card.Body>
                 </Card>
               </Col>
@@ -57,6 +57,5 @@ export default function CardGames() {
           ))}
         </Row>
       </div>
-    </div>
   );
 }

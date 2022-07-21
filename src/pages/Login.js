@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
 export default function Login() {
@@ -15,7 +15,7 @@ export default function Login() {
         password,
       })
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           localStorage.setItem("token", res.data.token);
           navigate("/");
           window.location.reload()
@@ -27,14 +27,15 @@ export default function Login() {
   };
 
   return (
-    <div className="justify-content-md-center center text-center">
-      <Container className="col-5 mt-5 mb-5">
-        <h3 className="m-5">Sign In</h3>
+    <div className="row align-items-center justify-content-center h-1001">
+    <div className="justify-content-md-center align-items-center text-center">
+      <Container className="col-5 mt-5 mb-5 p-5 bg-dark rounded">
+        <h3 className="m-5 text-danger">Sign In</h3>
         <div className="mb-3">
-          <label>Email address</label>
+          <label>Username</label>
           <input
             type="username"
-            className="form-control"
+            className="form-control bg-dark text-warning"
             placeholder="Username"
             onChange={(e) => {
               setUsername(e.target.value);
@@ -45,7 +46,7 @@ export default function Login() {
           <label>Password</label>
           <input
             type="password"
-            className="form-control"
+            className="form-control bg-dark text-warning"
             placeholder="Password"
             onChange={(e) => {
               setPassword(e.target.value);
@@ -59,20 +60,21 @@ export default function Login() {
               className="custom-control-input"
               id="customCheck1"
             />
-            <label className="custom-control-label" htmlFor="customCheck1">
+            <label className="custom-control-label m-1" htmlFor="customCheck1">
               Remember me
             </label>
           </div>
         </div>
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary" onClick={postData}>
+          <button type="submit" className="btn btn-danger" onClick={postData}>
             Login
           </button>
         </div>
         <p className="forgot-password text-right">
-          Forgot <a href="#">password?</a>
+          Forgot <Link to="#">password?</Link>
         </p>
       </Container>
+    </div>
     </div>
   );
 }
