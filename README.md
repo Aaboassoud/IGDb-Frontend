@@ -1,6 +1,4 @@
-# Project Name: IGDb
-
-## [IGDb](https://sprightly-banoffee-dd3577.netlify.app/Home)
+# Project Name: [IGDb](https://sprightly-banoffee-dd3577.netlify.app/Home)
 
 ## Idea:
 The Internet Game Database is (IGDb) , an online database that contains information and statistics about video games as well as developers and other game industry professionals.
