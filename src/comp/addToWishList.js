@@ -14,10 +14,10 @@ export default function AddToWishList() {
                 console.log(res.data);
                 navigate('/WishList')
             })
-            .catch(res => { console.log(res.response.data.msg) 
+            .catch(res => { console.log(res.response) 
                 alert(res.response.data.msg)
             navigate('/')})
-    }, [params.id])
+    }, [])
   return (
     <div>
       <h1 className='center text-center bold text-danger'>Add to WishList</h1>

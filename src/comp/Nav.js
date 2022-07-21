@@ -14,8 +14,13 @@ export default function Nav1() {
   return (
     <Nav fill variant="tabs" defaultActiveKey="/" className="h5">
       <Nav.Item>
-        <Nav.Link href="/" className="text-warning">
+        <Nav.Link href="/Home" className="text-warning">
           IGDb
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/" className="text-warning bg-dark">
+          Games
         </Nav.Link>
       </Nav.Item>
         {showLogout ? (

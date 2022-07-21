@@ -22,7 +22,7 @@ export default function Ratings() {
             .catch(res => { console.log(res.data) })
         axios.get(`http://127.0.0.1:8000/games/all?game=${params.id}`)
             .then(res => {
-                console.log(res.data.games);
+                console.log(res.data.games,'WOW');
                 setData2(res.data.games)
             })
             .catch(res => { console.log(res.data) })
@@ -76,15 +76,17 @@ export default function Ratings() {
                             <Card.Title className='text-warning'>{Array.from(new Set(data.map(item => item.game.rating)))}</Card.Title>
                             <Button variant="info" onClick={token != null ? handleShow : handleClick}>Add Rating</Button>
                             <Modal show={show} onHide={handleClose}>
-                                <Modal.Header closeButton>
+                                <Modal.Header closeButton className='bg-dark text-danger'>
                                     <Modal.Title>Modal heading</Modal.Title>
                                 </Modal.Header>
-                                <h5>Add rating: </h5><input type='text' maxLength={'3'} onChange={(e) => { setRating(parseFloat(e.target.value)) }} />
-                                <Modal.Footer>
+                                <Modal.Body className='center text-center bg-dark text-warning'>
+                                <h5 className='center text-center'>Add rating: </h5><input className='text-center text-warning bg-dark' type='text' maxLength={'3'} onChange={(e) => { setRating(parseFloat(e.target.value)) }} />
+                                </Modal.Body>
+                                <Modal.Footer className='bg-dark'>
                                     <Button variant="secondary" onClick={handleClose}>
                                         Close
                                     </Button>
-                                    <Button variant="primary" onClick={addRating}>
+                                    <Button variant="success" onClick={addRating}>
                                         Save Changes
                                     </Button>
                                 </Modal.Footer>

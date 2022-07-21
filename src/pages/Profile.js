@@ -29,7 +29,7 @@ export default function Profile() {
             <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
     <div class="card1 p-4 bg-dark rounded">
         <div class=" image1 d-flex flex-column justify-content-center align-items-center text-danger">
-            <button class="btn2 btn-secondary"> <img src="https://i.pinimg.com/736x/b0/7f/cd/b07fcdce16d6f2aa83a6fd3c9c004351.jpg" height="100" width="100" className='rounded' /></button>
+            <button class="btn2 btn-secondary"> <img src="https://i.pinimg.com/736x/b0/7f/cd/b07fcdce16d6f2aa83a6fd3c9c004351.jpg" height="100" width="100" className='rounded' alt=''/></button>
             <span class="name1 mt-3">{`${data.first_name} ${data.last_name}`}</span> <span class="idd2 text-warning">@{data.username}</span>
             <div class="d-flex flex-row justify-content-center align-items-center mt-3">
                 <span class="number3">{255+data.id} <span class="follow3">Followers</span></span> </div>

@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import Remove from "./comp/Remove";
 import Footer from "./comp/Footer";
 import Login from "./pages/Login";
+import Games from "./pages/Games";
 import Home from "./pages/Home";
 import Nav from "./comp/Nav";
 import "./bootstrap.css";
@@ -18,7 +19,8 @@ function App() {
       <Router>
         <Nav />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Games />} />
+          <Route path="/Home" element={<Home />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/WishList" element={<WishList />} />
